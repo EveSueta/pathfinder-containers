@@ -109,7 +109,7 @@ services:
     image: busybox
     volumes:
       - ./mumble/data:/data
-    command: ["sh", "-c", "chown -R 1000:1000 /data"]
+    command: ["sh", "-c", "chown -R 10000:10000 /data"]
   mumble-server:
     image: mumblevoip/mumble-server:v1.5.634-0
     container_name: mumble-server
