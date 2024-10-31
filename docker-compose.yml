@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   pfdb:
     image: bianjp/mariadb-alpine:latest
@@ -106,6 +104,18 @@ services:
     networks:
       - web
     restart: always
+  mumble-server:
+    image: mumblevoip/mumble-server:v1.5.634-0
+    container_name: mumble-server
+    hostname: mumble-server
+    restart: on-failure
+    volumes:
+      - ./mumble/data:/data
+    ports:
+      - 64738:64738
+      - 64738:64738/udp
+    env_file:
+      - .env
 
 volumes:
      db_data:
