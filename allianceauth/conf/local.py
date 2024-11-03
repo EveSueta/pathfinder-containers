@@ -78,7 +78,7 @@ INSTALLED_APPS += [
     # 'allianceauth.services.modules.discourse',
     # 'allianceauth.services.modules.ips4',
     # 'allianceauth.services.modules.openfire',
-    #'allianceauth.services.modules.mumble',
+    'allianceauth.services.modules.mumble',
     # An example of running mumble with authenticator in docker can be found here
     # https://github.com/Solar-Helix-Independent-Transport/allianceauth-docker-mumble
     # 'allianceauth.services.modules.phpbb3',
@@ -99,3 +99,5 @@ CELERYBEAT_SCHEDULE['structures_fetch_all_notifications'] = {
     'task': 'structures.tasks.fetch_all_notifications',
     'schedule': crontab(minute='*/5'),
 }
+
+MUMBLE_URL = "aa." + os.environ.get('DOMAIN')

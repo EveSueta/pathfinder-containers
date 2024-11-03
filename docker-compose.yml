@@ -104,26 +104,6 @@ services:
     networks:
       - web
     restart: always
-# Mumble
-  mumble-init:
-    image: busybox
-    volumes:
-      - ./mumble/data:/data
-    command: ["sh", "-c", "chown -R 10000:10000 /data"]
-  mumble-server:
-    image: mumblevoip/mumble-server:v1.5.634-0
-    container_name: mumble-server
-    hostname: mumble-server
-    depends_on:
-      - mumble-init
-    restart: on-failure
-    volumes:
-      - ./mumble/data:/data # In case of Permission denied run: sudo chown -R 10000:10000 mumble/data/
-    ports:
-      - 64738:64738
-      - 64738:64738/udp
-    env_file:
-      - .env
 
 volumes:
      db_data:
