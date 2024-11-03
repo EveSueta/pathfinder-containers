@@ -72,6 +72,7 @@ INSTALLED_APPS += [
     # 'allianceauth.timerboard',
     'allianceauth.eveonline.autogroups',
     'structures',
+    'eveuniverse',
     # https://allianceauth.readthedocs.io/en/latest/features/services/index.html
     # 'allianceauth.services.modules.discord',
     # 'allianceauth.services.modules.discourse',
