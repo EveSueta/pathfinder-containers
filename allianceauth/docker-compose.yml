@@ -51,7 +51,7 @@ services:
     image: mariadb:10.11
     command: [mysqld, --character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --default-authentication-plugin=mysql_native_password]
     volumes:
-      - ./mysql-data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
       - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
     environment:
       - MYSQL_ROOT_PASSWORD=${AA_DB_ROOT_PASSWORD?err}
@@ -179,6 +179,8 @@ volumes:
     redis-data:
     static-volume:
     grafana-data:
+    mumble-data:
+    mysql-data:
 
 networks:
     aa:
