@@ -176,22 +176,10 @@ services:
   mumble-authenticator:
     build:
       context: .
-      dockerfile_inline: |
-        FROM python:3.11-slim
-
-        RUN apt-get update && apt-get upgrade -y && apt-get install -y \
-            libmariadb-dev g++ git pkg-config libbz2-dev
-
-        RUN pip install --upgrade pip
-        RUN pip install wheel
-        RUN pip install bcrypt passlib zeroc-ice mysqlclient
-
-        ENTRYPOINT ["sh", "-c"]
+      dockerfile: ./mumble-authenticator/Dockerfile
     restart: always
     volumes:
-      - ./mumble-authenticator/:/home/allianceserver/mumble-authenticator/
-    working_dir: /home/allianceserver/mumble-authenticator/
-    entrypoint: ["python", "authenticator.py"]
+      - ./authenticator.ini:/app/authenticator.ini
     depends_on:
       - mumble-server
       - auth_mysql
