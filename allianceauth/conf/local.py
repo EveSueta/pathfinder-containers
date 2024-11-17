@@ -74,17 +74,7 @@ INSTALLED_APPS += [
     'structures',
     'eveuniverse',
     # https://allianceauth.readthedocs.io/en/latest/features/services/index.html
-    # 'allianceauth.services.modules.discord',
-    # 'allianceauth.services.modules.discourse',
-    # 'allianceauth.services.modules.ips4',
-    # 'allianceauth.services.modules.openfire',
-    #'allianceauth.services.modules.mumble',
-    # An example of running mumble with authenticator in docker can be found here
-    # https://github.com/Solar-Helix-Independent-Transport/allianceauth-docker-mumble
-    # 'allianceauth.services.modules.phpbb3',
-    # 'allianceauth.services.modules.smf',
-    # 'allianceauth.services.modules.teamspeak3',
-    # 'allianceauth.services.modules.xenforo',
+    'allianceauth.services.modules.discord'
 ]
 
 #######################################
@@ -98,4 +88,20 @@ CELERYBEAT_SCHEDULE['structures_update_all_structures'] = {
 CELERYBEAT_SCHEDULE['structures_fetch_all_notifications'] = {
     'task': 'structures.tasks.fetch_all_notifications',
     'schedule': crontab(minute='*/5'),
+}
+
+# Discord Configuration
+# Be sure to set the callback URLto https://example.com/discord/callback/
+# substituting your domain for example.com in Discord's developer portal
+# (Be sure to add the trailing slash)
+DISCORD_GUILD_ID = os.environ.get('DISCORD_GUILD_ID')
+DISCORD_CALLBACK_URL = f"{SITE_URL}/discord/callback/"
+DISCORD_APP_ID = os.environ.get('DISCORD_APP_ID')
+DISCORD_APP_SECRET = os.environ.get('DISCORD_APP_SECRET')
+DISCORD_BOT_TOKEN = os.environ.get('DISCORD_BOT_TOKEN')
+DISCORD_SYNC_NAMES = False
+
+CELERYBEAT_SCHEDULE['discord.update_all_usernames'] = {
+    'task': 'discord.update_all_usernames',
+    'schedule': crontab(minute='0', hour='*/12'),
 }
