@@ -151,6 +151,17 @@ services:
     deploy:
       replicas: 2
 
+  allianceauth_discordproxy:
+    container_name: allianceauth_discordproxy
+    <<: [*allianceauth-base]
+    entrypoint: [
+        "/home/allianceauth/.local/bin/discordproxyserver",
+        "--host",
+        "0.0.0.0",
+        "--token",
+        "${DISCORD_BOT_TOKEN}"
+    ]
+
   grafana:
     image: grafana/grafana-oss:9.5.2
     restart: always
