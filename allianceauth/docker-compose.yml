@@ -1,5 +1,3 @@
-version: '3.8'
-
 x-allianceauth-base: &allianceauth-base
   #image: ${AA_DOCKER_TAG?err}
   build:
