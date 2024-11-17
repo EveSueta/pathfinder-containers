@@ -1,2 +1,3 @@
 django-eveuniverse==1.5.5
 aa-structures==2.16.0
+aa-discordnotify==2.0.0

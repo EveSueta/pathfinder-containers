@@ -73,6 +73,7 @@ INSTALLED_APPS += [
     'allianceauth.eveonline.autogroups',
     'structures',
     'eveuniverse',
+    'discordnotify',
     # https://allianceauth.readthedocs.io/en/latest/features/services/index.html
     'allianceauth.services.modules.discord'
 ]
@@ -105,3 +106,8 @@ CELERYBEAT_SCHEDULE['discord.update_all_usernames'] = {
     'task': 'discord.update_all_usernames',
     'schedule': crontab(minute='0', hour='*/12'),
 }
+
+# Discord notification forwarding
+DISCORDPROXY_HOST='allianceauth_discordproxy'
+DISCORDNOTIFY_MARK_AS_VIEWED=True
+DISCORDNOTIFY_SUPERUSER_ONLY=True
